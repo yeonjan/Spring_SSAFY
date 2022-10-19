@@ -21,7 +21,9 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<context:component-scan base-package="com.ssafy.mvc" />
+	<beans:bean class="com.ssafy.mvc.ApplicationContextHolder"></beans:bean>
+	
+	<context:component-scan base-package="com.ssafy.mvc.controller" />
 	
 	
 	
