@@ -15,8 +15,11 @@ import org.springframework.web.servlet.ModelAndView;
 import com.ssafy.mvc.dto.Book;
 import com.ssafy.mvc.model.service.BookService;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Controller
 @RequestMapping(value = "/book")
+@Slf4j
 public class BookController {
 
 	@Autowired
@@ -32,7 +35,8 @@ public class BookController {
 		
 		//Model로 처리한 결과를 담기
 		model.addAttribute("list",list);
-
+		log.debug(bookService.getClass().getName());
+		
 		// 2. view 반환
 		
 		return "bookList";
