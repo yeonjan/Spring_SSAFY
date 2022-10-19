@@ -6,9 +6,9 @@
 	<!-- Root Context: defines shared resources visible to all other web components -->
 
 	<!-- DataSource 빈 등록 -->
-	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
 		<property value="com.mysql.cj.jdbc.Driver"
-			name="driverClassName"></property>
+			name="driverClass"></property>
 		<property
 			value="jdbc:mysql://localhost:3306/bookdb?serverTimezone=UTC"
 			name="url"></property>
