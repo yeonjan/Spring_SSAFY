@@ -30,6 +30,7 @@ public class ExceptionController {
 	
 	//404 발생 시 처리 메소드
 	@ExceptionHandler(NoHandlerFoundException.class)
+	//응답 상태 코드 설정
 	@ResponseStatus(HttpStatus.NOT_FOUND)
 	public String notFound(NoHandlerFoundException e) {
 		
