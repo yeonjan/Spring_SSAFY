@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.ssafy.mvc.dto.Book;
+import com.ssafy.mvc.dto.Book2;
 
 @Repository
 public class BookDaoImpl implements BookDao {
@@ -52,6 +53,34 @@ public class BookDaoImpl implements BookDao {
 			if (conn!=null) conn.close();
 
 		}
+	}
+	
+	@Override
+	public void saveBook(Book2 book) throws SQLException {
+		String sql = "insert into book(isbn,title,author,price) values (?, ?, ?, ?);";
+
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+
+
+		try {
+			conn = ds.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, book.getIsbn());
+			pstmt.setString(2, book.getTitle());
+			pstmt.setString(3, book.getAuthor());
+			pstmt.setInt(4,book.getPrice());
+			int cnt = pstmt.executeUpdate();
+
+
+		} finally {
+
+			if (pstmt != null)
+				pstmt.close();
+			if (conn != null)
+				conn.close();
+		}
+
 	}
 
 }

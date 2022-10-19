@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ssafy.mvc.dto.Book;
+import com.ssafy.mvc.dto.Book2;
 import com.ssafy.mvc.model.dao.BookDao;
 
 @Service
@@ -21,6 +22,14 @@ public class BookServiceImpl implements BookService{
 		
 		return bookDao.selectAll();
 	}
+
+	@Override
+	public void saveBook(Book2 book) throws SQLException {
+		bookDao.saveBook(book);
+		
+	}
+	
+	
 	
 	
 }

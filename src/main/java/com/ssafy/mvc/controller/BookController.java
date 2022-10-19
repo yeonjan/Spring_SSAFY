@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ssafy.mvc.dto.Book;
+import com.ssafy.mvc.dto.Book2;
 import com.ssafy.mvc.model.service.BookService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -41,5 +42,21 @@ public class BookController {
 		
 		return "bookList";
 
+	}
+	
+	
+	@GetMapping("/goRegist")
+	public String regist() {
+		return "regist";
+	}
+	
+	@GetMapping("/regist")
+	public ModelAndView regist(Book2 book) throws SQLException {
+		bookService.saveBook(book);
+		
+	    ModelAndView mav = new ModelAndView();
+	    mav.setViewName("redirect:/book/list");
+		
+		return mav;
 	}
 }

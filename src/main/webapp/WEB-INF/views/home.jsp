@@ -10,6 +10,7 @@
 	홈페이지
 </h1>
 <a href = "${pageContext.request.contextPath}/book/list">책 목록 조회</a>
+<a href = "${pageContext.request.contextPath}/book/goRegist">책 등록</a>
 
 <P>  The time on the server is ${serverTime}. </P>
 </body>
