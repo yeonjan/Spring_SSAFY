@@ -1,7 +1,6 @@
 
 
-### get방식으로 데이터 한번에 보내기
-
+### key=value 형태로 전달된 요청 파라미터 한번에 받기
 regist.jsp 
 파라미터의 name 값을 DTO의 setter의 set 뒤의 이름과 동일하게 작성
 ```html
@@ -18,7 +17,8 @@ regist.jsp
 </form> 
 ```
 BookController.java
-controller에서는 dto로 입력받을 수 있다.
+controller에서는 dto로 입력받을 수 있다.  
+book이 기본 생성자로 생성된 후 요청 파라미터에 따라 setter로 값이 설정된다.
 ```java
 @GetMapping("/regist")
 public ModelAndView regist(Book2 book) throws SQLException {
