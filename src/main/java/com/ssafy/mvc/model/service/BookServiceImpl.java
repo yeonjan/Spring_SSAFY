@@ -3,7 +3,6 @@ package com.ssafy.mvc.model.service;
 import java.sql.SQLException;
 import java.util.List;
 
-import org.apache.ibatis.annotations.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
