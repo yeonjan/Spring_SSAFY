@@ -18,7 +18,7 @@ import lombok.extern.slf4j.Slf4j;
 public class LoggingAspect {
 
 	// model 아래 service 아래 모든 클래스의 모든 메소드 대상/ (..) -> 매개변수는 0개 이상/ 맨앞 *은 반환 타입
-	@Before(value = "execution(* com.ssafy.mvc.model.*.*.*(..))")
+	@Before(value = "execution(* com.ssafy.mvc.model.*.*.*(..)) || execution(* com.ssafy.mvc.interceptor.*.*(..))")
 	public void logging(JoinPoint jp) {
 
 		Signature sig = jp.getSignature();
