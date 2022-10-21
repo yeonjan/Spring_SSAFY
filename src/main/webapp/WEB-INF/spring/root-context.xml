@@ -10,17 +10,39 @@
 	<!-- Root Context: defines shared resources visible to all other web components -->
 
 	<!-- DataSource 빈 등록 -->
-	<bean id="dataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
-		<property value="com.mysql.cj.jdbc.Driver"
-			name="driverClass"></property>
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
+		<property value="com.mysql.cj.jdbc.Driver" name="driverClass"></property>
 		<property
 			value="jdbc:mysql://localhost:3306/bookdb?serverTimezone=UTC"
 			name="url"></property>
 		<property value="ssafy" name="username"></property>
 		<property value="ssafy" name="password"></property>
 	</bean>
-	<bean class ="com.ssafy.mvc.ApplicationContextHolder"></bean>
-	<context:component-scan base-package="com.ssafy.mvc.model,com.ssafy.mvc.aop"></context:component-scan>
-	
+	<bean class="com.ssafy.mvc.ApplicationContextHolder"></bean>
+	<context:component-scan
+		base-package="com.ssafy.mvc.model,com.ssafy.mvc.aop"></context:component-scan>
+
 	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+
+	<!-- myBatis 설정 -->
+	<!-- 1. sqlSessionFactory -->
+	<bean id="sqlSessionFactory"
+		class="org.mybatis.spring.SqlSessionFactoryBean">
+		<!-- DataSource -->
+		<property name="dataSource" ref="dataSource"></property>
+		<!-- typeAlias -->
+		<property name="typeAliasesPackage" value="com.ssafy.mvc.dto"></property>
+		<!-- mapper.xml의 경로 -->
+		<property name="mapperLocations"
+			value="classpath:mapper/*.xml"></property>
+
+	</bean>
+
+	<!-- 2.sqlSession 빈 등록 -->
+	<bean id="sqlSession"
+		class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="sqlSessionFactory"></constructor-arg>
+	</bean>
+
 </beans>
