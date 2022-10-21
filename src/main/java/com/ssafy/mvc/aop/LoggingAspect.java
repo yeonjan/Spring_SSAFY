@@ -27,21 +27,20 @@ public class LoggingAspect {
 		log.debug("메소드 선언부: {}, 전달 파라미터: {}", sig, args);
 	}
 	
-	@Around(value = "execution(* com.ssafy.mvc.model.dao.BookDaoImpl.selectAll())")
-	public Object calcTime(ProceedingJoinPoint proc) throws Throwable {
-		
-		//시작 시간
-		long start=System.currentTimeMillis();
-		//원래 메소드를 실행하는 코드
-		Object result=proc.proceed();
-		
-		//종료 시간
-		long end=System.currentTimeMillis();
-		
-		log.debug("수행 시간 : {}",end-start);
-		return result;
-		
-	}
+	/*
+	 * @Around(value =
+	 * "execution(* com.ssafy.mvc.model.dao.BookDaoImpl.selectAll())") public Object
+	 * calcTime(ProceedingJoinPoint proc) throws Throwable {
+	 * 
+	 * //시작 시간 long start=System.currentTimeMillis(); //원래 메소드를 실행하는 코드 Object
+	 * result=proc.proceed();
+	 * 
+	 * //종료 시간 long end=System.currentTimeMillis();
+	 * 
+	 * log.debug("수행 시간 : {}",end-start); return result;
+	 * 
+	 * }
+	 */
 	
 
 }
