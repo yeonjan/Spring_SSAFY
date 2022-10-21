@@ -7,7 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ssafy.mvc.dto.Book;
-import com.ssafy.mvc.dto.Book2;
+import com.ssafy.mvc.dto.FileInfo;
+import com.ssafy.mvc.dto.Book;
 import com.ssafy.mvc.model.mapper.BookMapper;
 
 @Service
@@ -24,8 +25,14 @@ public class BookServiceImpl implements BookService {
 	}
 
 	@Override
-	public void saveBook(Book2 book) throws SQLException {
-		//bookMapper.saveBook(book);
+	public void insert(Book book) throws SQLException {
+		bookMapper.insertBook(book);
+		
+		FileInfo fileInfo=book.getFileInfo();
+		if (fileInfo!=null) {
+			bookMapper.insertFileInfo(book);
+			
+		}
 
 	}
 

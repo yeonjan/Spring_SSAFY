@@ -4,11 +4,11 @@ import java.sql.SQLException;
 import java.util.List;
 
 import com.ssafy.mvc.dto.Book;
-import com.ssafy.mvc.dto.Book2;
+import com.ssafy.mvc.dto.Book;
 
 public interface BookService {
 	
 	List<Book> selectAll() throws SQLException;
-	void saveBook(Book2 book) throws SQLException;
+	void insert(Book book) throws SQLException;
 
 }

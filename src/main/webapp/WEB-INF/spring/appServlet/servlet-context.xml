@@ -36,13 +36,19 @@
 	<interceptors>
 		<interceptor>
 			<mapping path="/book/*"></mapping>
-<!-- 			<exclude-mapping path="/book/list"/>
-			<exclude-mapping path="/book/detail"/> -->
+			<!-- <exclude-mapping path="/book/list"/> <exclude-mapping path="/book/detail"/> -->
 			<beans:bean
 				class="com.ssafy.mvc.Interceptor.SessionConfirmInterceptor"></beans:bean>
 
 		</interceptor>
 
 	</interceptors>
+
+	<!-- 파일 업로드 (MultipartResolver 빈 등록) -->
+	<beans:bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<beans:property name="defaultEncoding" value="UTF-8"></beans:property>
+	</beans:bean>
+
 
 </beans:beans>

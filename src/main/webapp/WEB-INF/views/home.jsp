@@ -8,7 +8,7 @@
 <body>
 	<h1>홈페이지</h1>
 	<a href="${pageContext.request.contextPath}/book/list">책 목록 조회</a>
-	<a href="${pageContext.request.contextPath}/book/goRegist">책 등록</a>
+	<a href="${pageContext.request.contextPath}/book/regist">책 등록</a>
 	<c:if test="${empty userInfo}">
 		<a href="${pageContext.request.contextPath}/user/login">로그인</a>
 	</c:if>
