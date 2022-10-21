@@ -21,35 +21,31 @@ import com.ssafy.mvc.model.service.UserService;
 @Controller
 @RequestMapping("/user")
 public class UserController {
-	
+
 	@Autowired
 	UserService userService;
-	
+
 	@GetMapping("/login")
 	public String goLogin() {
 		return "/user/login";
 	}
-	
+
 	@PostMapping("/login")
-	public String login(HttpServletRequest request,User user) throws SQLException {
+	public String login(HttpSession session, User user) throws SQLException {
 		User loginUesUser = userService.selectById(user);
-		
-		//받아온 유저 정보 처리
-		if (loginUesUser==null) {
+
+		// 받아온 유저 정보 처리
+		if (loginUesUser == null) {
 			return "/user/login";
-		}
-		else {
-			HttpSession session=request.getSession();
+		} else {
 			session.setAttribute("userInfo", user);
 			return "home";
 		}
 
-		
 	}
-	
+
 	@GetMapping("/logout")
-	public String logout(HttpServletRequest request) {
-		HttpSession session=request.getSession();
+	public String logout(HttpSession session) {
 		session.invalidate();
 		return "home";
 	}
