@@ -12,15 +12,20 @@
 	<!-- Root Context: defines shared resources visible to all other web components -->
 
 	<!-- DataSource 빈 등록 -->
+	<!-- 스프링 쪽에서 connection pool 관리 -->
+	<!-- <bean id="dataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource"> 
+		<property value="com.mysql.cj.jdbc.Driver" name="driverClass"></property> 
+		<property value="jdbc:mysql://localhost:3306/bookdb?serverTimezone=UTC" name="url"></property> 
+		<property value="ssafy" name="username"></property> <property value="ssafy" 
+		name="password"></property> </bean> -->
+
 	<bean id="dataSource"
-		class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
-		<property value="com.mysql.cj.jdbc.Driver" name="driverClass"></property>
-		<property
-			value="jdbc:mysql://localhost:3306/bookdb?serverTimezone=UTC"
-			name="url"></property>
-		<property value="ssafy" name="username"></property>
-		<property value="ssafy" name="password"></property>
+		class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="jndiName" value ="java:comp/env/jdbc/ssafy"></property>
 	</bean>
+
+
+
 	<bean class="com.ssafy.mvc.ApplicationContextHolder"></bean>
 	<context:component-scan
 		base-package="com.ssafy.mvc.model,com.ssafy.mvc.aop"></context:component-scan>
@@ -42,6 +47,10 @@
 	</bean>
 
 	<!--2. myBatis Mapper 빈등록 -->
-	<mybatis-spring:scan base-package="com.ssafy.mvc.model.mapper"/>
+	<!-- mybatis-spring:scan은 패키지의 모든 인터페이스를 mapper빈으로 등록 -->
+	<!-- annotation속성을 통해 어노테이션이 붙은 mapper만 빈으로 등록 -->
+	<mybatis-spring:scan
+		base-package="com.ssafy.mvc.model"
+		annotation="org.apache.ibatis.annotations.Mapper" />
 
 </beans>

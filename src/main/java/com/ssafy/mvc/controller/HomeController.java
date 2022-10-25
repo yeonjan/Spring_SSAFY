@@ -35,7 +35,7 @@ public class HomeController {
 			log.debug("ApplicationContext 정보: {}", a.toString());
 			String[] beanNames = a.getBeanDefinitionNames();
 			for (int i = 0; i < beanNames.length; i++) {
-				//log.debug("{}번 빈 이름 : {}",i,beanNames[i]);
+				log.debug("{}번 빈 이름 : {}",i,beanNames[i]);
 				
 			}
 			BookService b =  (BookService) a.getBean("bookServiceImpl");
