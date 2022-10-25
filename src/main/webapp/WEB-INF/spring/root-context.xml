@@ -4,10 +4,12 @@
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:aop="http://www.springframework.org/schema/aop"
 	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xmlns:tx="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
-		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 
 	<!-- Root Context: defines shared resources visible to all other web components -->
 
@@ -19,9 +21,10 @@
 		<property value="ssafy" name="username"></property> <property value="ssafy" 
 		name="password"></property> </bean> -->
 
+	<!-- 톰캣에서 데이터를 관리 -->
 	<bean id="dataSource"
 		class="org.springframework.jndi.JndiObjectFactoryBean">
-		<property name="jndiName" value ="java:comp/env/jdbc/ssafy"></property>
+		<property name="jndiName" value="java:comp/env/jdbc/ssafy"></property>
 	</bean>
 
 
@@ -52,5 +55,14 @@
 	<mybatis-spring:scan
 		base-package="com.ssafy.mvc.model"
 		annotation="org.apache.ibatis.annotations.Mapper" />
+
+	<!-- 트랜잭션 설정 -->
+	<!-- transaction manger 빈 등록 -->
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<constructor-arg ref="dataSource"></constructor-arg>
+	</bean>
+	<!-- @Transactional 사용을 위한 설정 -->
+	<tx:annotation-driven transaction-manager="transactionManager"/>
 
 </beans>

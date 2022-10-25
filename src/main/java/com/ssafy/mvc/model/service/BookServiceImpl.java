@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.ssafy.mvc.dto.Book;
 import com.ssafy.mvc.dto.FileInfo;
@@ -25,6 +26,7 @@ public class BookServiceImpl implements BookService {
 	}
 
 	@Override
+	@Transactional
 	public void insert(Book book) throws SQLException {
 		bookMapper.insertBook(book);
 		

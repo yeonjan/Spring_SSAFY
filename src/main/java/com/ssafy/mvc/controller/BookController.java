@@ -96,10 +96,8 @@ public class BookController {
 
 		// 책 정보 DB에 저장
 		bookService.insert(book);
+		
 		// 책 목록 화면으로 이동
-
-		// 파일 정보가 없는 경우
-
 		return "redirect:list";
 	}
 }
