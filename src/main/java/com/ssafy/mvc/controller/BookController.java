@@ -60,7 +60,7 @@ public class BookController {
 	public String regist() {
 		return "regist";
 	}
-
+  
 	@PostMapping("/regist")
 	public String regist(Book book, @RequestParam MultipartFile file)
 			throws SQLException, IllegalStateException, IOException {
