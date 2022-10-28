@@ -8,7 +8,7 @@ import org.apache.ibatis.annotations.Mapper;
 import com.ssafy.mvc.dto.Book;
 import com.ssafy.mvc.dto.FileInfo;
 
-@Mapper
+//@Mapper -> root xml에 컴포넌트 스캔을 했으므로 애노테이션을 붙일 필요가 없다
 public interface BookMapper {
 	/**
 	 * 책 목록 전체 조회
